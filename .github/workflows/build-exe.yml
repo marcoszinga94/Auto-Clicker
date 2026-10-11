@@ -1,0 +1,45 @@
+name: build-exe
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller keyboard
+
+      - name: Build AutoClicker.exe
+        run: |
+          pyinstaller --onefile --windowed --name AutoClicker windows/autoclicker.py
+
+      - name: Smoke test import
+        run: |
+          python -c "import ast; ast.parse(open('windows/autoclicker.py', encoding='utf-8').read())"
+          python windows/autoclicker.py --help
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AutoClicker.exe
+          path: dist/AutoClicker.exe
+
+      - name: Attach to Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/AutoClicker.exe

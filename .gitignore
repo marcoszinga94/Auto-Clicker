@@ -8,3 +8,10 @@
 /.vscode/
 
 __pycache__/
+
+# Artefactos de descarga / compilación
+*.tar.gz
+/src/Auto-Clicker-*/
+/build/
+/dist/
+*.spec

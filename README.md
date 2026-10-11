@@ -1,3 +1,19 @@
+# Auto-Clicker
+
+> **Nota:** este repositorio contiene varias versiones del autoclicker:
+
+| Versión | Plataforma | Código | ¿Cómo se usa? |
+| --- | --- | --- | --- |
+| **Klickmeister** | Linux (KDE Plasma 6 / Wayland) | Rust + QML (`src/`, `qml/`) | `makepkg -si` o `cargo build --release` |
+| **Auto Clicker Simple (Linux)** | Linux (KDE/Wayland y X11) | Python + GTK4 (`autoclicker.py`) | `python3 autoclicker.py` o `./install.sh` |
+| **Auto Clicker Simple (Windows)** | Windows | Python + Tkinter (`windows/autoclicker.py`) | Descargar `AutoClicker.exe` desde las [Releases](https://github.com/marcoszinga94/Auto-Clicker/releases) o compilar con [GitHub Actions](windows/README.md) |
+
+El **`AutoClicker.exe`** se compila automáticamente en un runner de Windows
+mediante el workflow `.github/workflows/build-exe.yml` (PyInstaller). Ver
+[windows/README.md](windows/README.md).
+
+---
+
 # Klickmeister
 
 Automatische Mausklicks für KDE Plasma.
