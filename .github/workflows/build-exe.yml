@@ -6,6 +6,9 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -43,3 +46,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist/AutoClicker.exe
+          overwrite_files: true
+          body: |
+            Compilado automático con GitHub Actions (PyInstaller, runner de Windows).
+
+            - `AutoClicker.exe`: autoclicker para Windows (SendInput + Tkinter, atajo global F8).
+            - Versión Linux: `autoclicker.py` (GTK4) y Klickmeister (Rust/QML, KDE Plasma 6).
